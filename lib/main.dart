@@ -5,13 +5,13 @@ import 'package:flutter_fundamental/gradient_container.dart';
 void main() {
   const outputText = 'Roll Dice';
 
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Scaffold(
       // body: GradientContainer.purple(),
       body: GradientContainer(
-        Color.fromARGB(255, 33, 5, 109),
-        Color.fromARGB(255, 68, 21, 149),
+        const Color.fromARGB(255, 33, 5, 109),
+          const Color.fromARGB(255, 68, 21, 149),
         outputText
       ),
     ),

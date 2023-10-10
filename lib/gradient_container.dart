@@ -45,9 +45,9 @@ class GradientContainer extends StatelessWidget {
 
   // postional agrs: const GradientContainer(this.colors, this.text, {super.key});
   // named agrs:
-  const GradientContainer(this.color1, this.color2, this.text, {super.key});
+  GradientContainer(this.color1, this.color2, this.text, {super.key});
 
-  const GradientContainer.purple({super.key})
+  GradientContainer.purple({super.key})
       : color1 = Colors.purple,
         color2 = Colors.indigo,
         text = 'Called from purple func';
@@ -57,8 +57,15 @@ class GradientContainer extends StatelessWidget {
 
   final String text;
 
+  var activeDiceImagePath = 'assets/images/dice-2.png';
+
   void rollDice() {
-    print('Rolling dice...');
+    print(activeDiceImagePath);
+    List<int> numbers = List.generate(6, (index) => index + 1);
+    for (int numb in numbers) {
+      activeDiceImagePath = 'assets/images/dice-$numb.png';
+      print(activeDiceImagePath);
+    }
   }
 
   @override
@@ -68,14 +75,32 @@ class GradientContainer extends StatelessWidget {
         gradient: LinearGradient(
             colors: [color1, color2], begin: startAlignment, end: endAlignment),
       ),
-      child: Column(
-        children: [
-          Image.asset(
-            'assets/images/dice-2.png',
-            width: 200,
-          ),
-          TextButton(onPressed: rollDice, child: StyledText(text)),
-        ],
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              activeDiceImagePath,
+              width: 200,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextButton(
+                onPressed: rollDice,
+                style: TextButton.styleFrom(
+                  // padding: EdgeInsets.only(
+                  //   top: 20,
+                  // ),
+                  foregroundColor: Colors.white,
+                  textStyle: const TextStyle(
+                    fontSize: 28,
+                    color: Colors.amber,
+                  ),
+                ),
+                child: StyledText(text)),
+          ],
+        ),
       ),
     );
   }
